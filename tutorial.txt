@@ -1,0 +1,24 @@
+create table faculty(Id numeric(3), Name varchar(30), DOJ date, Salary numeric(6,2));
+
+insert into faculty values(100, 'Ram', '12-Jun-2000', 5600.43);
+insert into faculty values(101, 'Sam', '15-May-2004', 7889.00);
+insert into faculty values(102, 'Jess', '21-Dec-2000', 231.23);
+insert into faculty values(103, 'Ross', '06-Feb-1999', 6783.43);
+insert into faculty values(104, 'Rachel', '09-Jun-2000', 23.93);
+
+select * from faculty;
+
+select name, DOJ from faculty where salary > 2000;
+
+desc faculty;
+
+alter table faculty add dept_name varchar(20);
+
+update faculty set dept_name = 'CSE' where Id = 102;
+
+delete from faculty where Id = 102;
+
+drop table faculty;
+
+commit;
+

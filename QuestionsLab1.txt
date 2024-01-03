@@ -1,0 +1,19 @@
+Q1> Create a table employee, with columns emp_no, emp_name, emp_address
+
+Q2> Insert atleast five employees information
+
+Q3> Display names of all the employees
+
+Q4> Display all the employees from manipal
+
+Q5> Add a column named 'Salary' to the employee table
+
+Q6> Assign the salary for all employees
+
+Q7> Display the structure of the table
+
+Q8> Delete all the employees residing at 'Mangalore'
+
+Q9> Rename employee table as employee1
+
+Q10> Drop the table employee1
