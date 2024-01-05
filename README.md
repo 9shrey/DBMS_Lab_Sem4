@@ -1,1 +1,1 @@
-# DBMS_Lab_Sem4
+# Semester 4 DBS_Lab
