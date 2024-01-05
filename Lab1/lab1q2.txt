@@ -1,0 +1,27 @@
+create table account(act_no numeric(3), branch_name varchar(30), balance numeric(6,2));
+create table branch(branch_name varchar(30), branch_city varchar(30), assets numeric(15,2));
+create table customer(customer_name varchar(30), customer_street varchar(30), customer_city varchar(30));
+
+insert into account values(100, 'HDFC', 1000.90);
+insert into account values(101, 'ICICI', 567.87);
+insert into account values(102, 'YesBank', 12.32 );
+
+insert into branch values('HDFC', 'manipal', 10000);
+insert into branch values('ICICI', 'mangalore', 902833);
+insert into branch values('YesBank','bangalore' , 7862478);
+
+insert into customer values('Ram','Elmers', 'manipal');
+insert into customer values('Sam','Bay','mangalore');
+insert into customer values('Bam','MG Road', 'bangalore' );
+
+select * from account, branch, customer;
+
+select * from customer where customer_city = 'manipal';
+
+select * from branch where assets >10000;  
+
+drop table account;
+drop table branch;
+drop table customer;
+
+commit;

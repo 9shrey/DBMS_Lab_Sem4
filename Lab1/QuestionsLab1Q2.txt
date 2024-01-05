@@ -1,0 +1,10 @@
+Implement the bank database and execute the following queries:
+
+1.Account(act_no, branch_name, balance)
+2.Branch(branch_name, branch_city, assets)
+3.Customer(customer_name, customer_street, customer_city)
+
+Q1>Create all the tables and insert atleast three rows in each of them
+Q2>List the information of all the account holders
+Q3>Find the names of the customers residing in manipal
+Q4>Provide the branch details whose assets exceed 10000
