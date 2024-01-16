@@ -98,7 +98,9 @@ select name from instructor where dept_name = 'Comp. Sci.';
 
 select title from course where dept_name = 'Comp. Sci.' and credits = 3;
 
+select course_id, title from Course where course_id in (select course_id from takes where id=12345);
 
+select * from Instructor where salary>40000 and salary<90000;
 
 
 
