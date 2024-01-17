@@ -84,11 +84,11 @@ insert into employee values(69,'Shr', 'M','Huhhh', 2,default);
 
 select * from employee;
 
-rename department to departmen1;
+rename department to deeparme1;
 
-@"C:\Users\ugcse.PG-CP.000\Desktop\Shrey_AIML_A2_45\Lab2\University.sql"
+@"C:\Users\ugcse.PG-CP.000\Downloads\University.sql"
 
-@"C:\Users\ugcse.PG-CP.000\Desktop\Shrey_AIML_A2_45\Lab2\smallRelations.sql"
+@"C:\Users\ugcse.PG-CP.000\Downloads\smallRelations.sql"
 
 set linesize = 1000;
 
@@ -103,10 +103,38 @@ select course_id, title from Course where course_id in (select course_id from ta
 select * from Instructor where salary>40000 and salary<90000;
 
 
+select i.ID from instructor i where 1<=(select count(t.course_id) from teaches t where t.ID = i.ID);
 
+select s.name, c.title,se.year from takes t,student s, course c, section se where se.room_number = '100' and t.ID = s.ID and t.sec_id = se.sec_id and t.year = se.year and t.course_id = se.course_id and c.course_id = se.course_id;
 
+select s.name,t.course_id, c.course_id as c_name from student s, takes t, course c where t.course_id = c.course_id and t.year = 2015;
 
+select i.name,i.salary as inst_salary from instructor i where i.salary>some(select i.salary from instructor i where dept_name = 'Comp. Sci.');
 
+select i.name from instructor i where i.dept_name like '%ch%';
 
+select name, length(name) from student;
+
+select dept_name, substr(dept_name,3,3) from department;
+
+select upper(name) from Instructor;
+
+select id, course_id, NVL(grade, '0') from takes where semester = 'Summer';
+
+select salary, round(salary/3, -2) from Instructor;
+
+alter table employee add dateofbirth DATE default('02-jun-2002');
+
+select to_char(dateofbirth, 'dd-mon-yyyy') from employee;
+
+select to_char(dateofbirth, 'dd-mon-yy') from employee;
+
+select to_char(dateofbirth, 'dd-mm-yyyy') from employee;
+
+select to_char(dateofbirth, 'YEAR') from employee;
+
+select to_char(dateofbirth, 'Year') from employee;
+
+select to_char(dateofbirth, 'year') from employee;
 
 
