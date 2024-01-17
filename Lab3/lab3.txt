@@ -33,7 +33,7 @@ select dept_name, budget from department where budget<(select avg(salary) from i
 select c.title from course c where exists (select c.course_id from section s
 where s.semester = 'Fall' and s.year = 2009 and c.course_id = s.course_id)
 intersect
-select c.title from course c where exists (select c.course_id from section 
+select c.title from course c where exists (select c.course_id from section s
 where s.semester = 'Spring' and s.year = 2010 and c.course_id = s.course_id);
 
 select name from student s where exists (select t.id from takes t, course c where
