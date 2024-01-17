@@ -14,7 +14,7 @@ select title from course where course_id not in(select course_id from takes);
 
 select c.title from section s,course c where s.semester = 'Fall' and s.year = 2009 and c.course_id = s.course_id and c.title in(select c.title from section s,course c where s.semester = 'Spring' and s.year = 2010 and c.course_id = s.course_id);
 
-select count(ID) from takes where course_id in(select course_id from teaches where ID = '10101');
+select count(distinct(ID)) from takes where course_id in(select course_id from teaches where ID = '10101');
 
 select c.title from section s,course c where s.semester = 'Fall' and s.year = 2009 and c.course_id = s.course_id and c.title not in(select c.title from section s,course c where s.semester = 'Spring' and s.year = 2010 and c.course_id = s.course_id);
 
