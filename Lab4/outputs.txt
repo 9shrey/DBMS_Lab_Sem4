@@ -1,0 +1,209 @@
+SQL> 1>
+SP2-0042: unknown command "1>" - rest of line ignored.
+SQL> select dept_name, count(distinct ID) from student group by dept_name;
+
+DEPT_NAME            COUNT(DISTINCTID)
+-------------------- -----------------
+Elec. Eng.                           2
+Physics                              3
+Finance                              5
+Biology                              1
+History                              1
+Music                                1
+
+6 rows selected.
+
+SQL>
+SQL> 2>
+SP2-0042: unknown command "2>" - rest of line ignored.
+SQL> select avg(R.T), s.dept_name from (select count(distinct ID) as T from student group by dept_name) R, student s group by dept_name having count(distinct s.ID)>=avg(R.T);
+
+  AVG(R.T) DEPT_NAME
+---------- --------------------
+2.16666667 Physics
+2.16666667 Finance
+
+SQL>
+SQL> 3>
+SP2-0042: unknown command "3>" - rest of line ignored.
+SQL> select dept_name,count(distinct course_id) from course group by dept_name;
+
+DEPT_NAME            COUNT(DISTINCTCOURSE_ID)
+-------------------- ------------------------
+Elec. Eng.                                  1
+Physics                                     1
+Comp. Sci.                                  5
+Finance                                     1
+Biology                                     3
+History                                     1
+Music                                       1
+
+7 rows selected.
+
+SQL>
+SQL> 4>
+SP2-0042: unknown command "4>" - rest of line ignored.
+SQL> select dept_name,avg(salary) from instructor group by dept_name having avg(salary) > 42000;
+
+DEPT_NAME            AVG(SALARY)
+-------------------- -----------
+Elec. Eng.                 84000
+Physics                    95550
+Comp. Sci.                 81200
+Finance                    89250
+Biology                    75600
+History                    64050
+
+6 rows selected.
+
+SQL>
+SQL> 5>
+SP2-0042: unknown command "5>" - rest of line ignored.
+SQL> select se.sec_id,count(distinct t.ID) from takes t, section se where t.semester='Spring' and t.year=2009 and t.sec_id = se.sec_id and t.course_id=se.course_id and t.semester = se.semester and t.year = se.year group by se.sec_id;
+
+SEC_ID   COUNT(DISTINCTT.ID)
+-------- -------------------
+1                          1
+2                          2
+
+SQL>
+SQL> 6>
+SP2-0042: unknown command "6>" - rest of line ignored.
+SQL> SELECT course_id,prereq_id FROM prereq ORDER BY course_id;
+
+COURSE_I PREREQ_I
+-------- --------
+BIO-301  BIO-101
+BIO-399  BIO-101
+CS-190   CS-101
+CS-315   CS-101
+CS-319   CS-101
+CS-347   CS-101
+EE-181   PHY-101
+
+7 rows selected.
+
+SQL>
+SQL> 7>
+SP2-0042: unknown command "7>" - rest of line ignored.
+SQL> SELECT name,salary FROM instructor ORDER BY salary DESC;
+
+NAME                     SALARY
+-------------------- ----------
+Einstein                  99750
+Brandt                    96600
+Wu                        94500
+Gold                      91350
+Kim                       84000
+Singh                     84000
+Katz                      78750
+Crick                     75600
+Srinivasan                68250
+Califieri                 65100
+El Said                   63000
+
+NAME                     SALARY
+-------------------- ----------
+Mozart                    42000
+
+12 rows selected.
+
+SQL>
+SQL> 8>
+SP2-0042: unknown command "8>" - rest of line ignored.
+SQL> SELECT MAX(total_salary) FROM (SELECT SUM(salary) AS total_salary FROM instructor GROUP BY dept_name);
+
+MAX(TOTAL_SALARY)
+-----------------
+           243600
+
+SQL>
+SQL> 9>
+SP2-0042: unknown command "9>" - rest of line ignored.
+SQL> SELECT AVG(T) FROM (SELECT AVG(salary) AS T FROM instructor GROUP BY dept_name HAVING AVG(salary) > 42000);
+
+    AVG(T)
+----------
+81608.3333
+
+SQL>
+SQL> 10>
+SP2-0042: unknown command "10>" - rest of line ignored.
+SQL> SELECT MAX(total_student) FROM (SELECT COUNT(ID) AS total_student FROM TAKES GROUP BY sec_id, semester, year HAVING semester='Spring' and year=2010);
+
+MAX(TOTAL_STUDENT)
+------------------
+                 7
+
+SQL>
+SQL> 11>
+SP2-0042: unknown command "11>" - rest of line ignored.
+SQL> SELECT DISTINCT name FROM teaches, instructor WHERE teaches.id = instructor.id AND course_id IN (SELECT DISTINCT course_id FROM takes,student WHERE dept_name='Comp. Sci.' AND student.id = takes.id);
+
+no rows selected
+
+SQL>
+SQL> 12>
+SP2-0042: unknown command "12>" - rest of line ignored.
+SQL> SELECT dept_name, AVG(salary) FROM instructor GROUP BY dept_name HAVING AVG(salary)>50000 AND COUNT(ID)>=2;
+
+DEPT_NAME            AVG(SALARY)
+-------------------- -----------
+Physics                    95550
+Comp. Sci.                 81200
+Finance                    89250
+History                    64050
+
+SQL>
+SQL> 13>
+SP2-0042: unknown command "13>" - rest of line ignored.
+SQL> WITH temp AS (SELECT max(budget) AS temp FROM department) SELECT * FROM department,temp WHERE temp = department.budget;
+
+DEPT_NAME            BUILDING            BUDGET       TEMP
+-------------------- --------------- ---------- ----------
+Finance              Painter             120000     120000
+
+SQL>
+SQL> 14>
+SP2-0042: unknown command "14>" - rest of line ignored.
+SQL> WITH temp AS (SELECT avg(sum(salary)) AS T FROM instructor group by dept_name) SELECT distinct dept_name FROM instructor,temp group by dept_name,T having sum(salary)>T;
+
+DEPT_NAME
+--------------------
+Physics
+Comp. Sci.
+Finance
+
+SQL>
+SQL> 15>
+SP2-0042: unknown command "15>" - rest of line ignored.
+SQL> savepoint s1;
+
+Savepoint created.
+
+SQL> update student set dept_name='Finance' where dept_name='Comp. Sci.';
+
+0 rows updated.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL>
+SQL> 16>
+SP2-0042: unknown command "16>" - rest of line ignored.
+SQL> savepoint s2;
+
+Savepoint created.
+
+SQL> update instructor set salary = (case when salary>100000 then salary*1.03 else salary*1.05 end);
+
+12 rows updated.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL>
+SQL>
+SQL>
