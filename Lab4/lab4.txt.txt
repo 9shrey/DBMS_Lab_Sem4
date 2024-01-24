@@ -43,11 +43,11 @@ WITH temp AS (SELECT avg(sum(salary)) AS T FROM instructor group by dept_name) S
 15>
 savepoint s1;
 update student set dept_name='Finance' where dept_name='Comp. Sci.';
-rollback s1;
+rollback;
 
 16>
 savepoint s2;
 update instructor set salary = (case when salary>100000 then salary*1.03 else salary*1.05 end);
-rollback s2; 
+rollback; 
 
 
