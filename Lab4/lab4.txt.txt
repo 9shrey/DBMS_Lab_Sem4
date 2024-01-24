@@ -1,0 +1,53 @@
+1>
+select dept_name, count(distinct ID) from student group by dept_name;
+
+2>
+select avg(R.T), s.dept_name from (select count(distinct ID) as T from student group by dept_name) R, student s group by dept_name having count(distinct s.ID)>=avg(R.T);
+
+3>
+select dept_name,count(distinct course_id) from course group by dept_name;
+
+4>
+select dept_name,avg(salary) from instructor group by dept_name having avg(salary) > 42000;
+
+5>
+select se.sec_id,count(distinct t.ID) from takes t, section se where t.semester='Spring' and t.year=2009 and t.sec_id = se.sec_id and t.course_id=se.course_id and t.semester = se.semester and t.year = se.year group by se.sec_id;
+
+6>
+SELECT course_id,prereq_id FROM prereq ORDER BY course_id;
+
+7>
+SELECT name,salary FROM instructor ORDER BY salary DESC;
+
+8>
+SELECT MAX(total_salary) FROM (SELECT SUM(salary) AS total_salary FROM instructor GROUP BY dept_name);
+
+9>
+SELECT AVG(T) FROM (SELECT AVG(salary) AS T FROM instructor GROUP BY dept_name HAVING AVG(salary) > 42000);
+
+10>
+SELECT MAX(total_student) FROM (SELECT COUNT(ID) AS total_student FROM TAKES GROUP BY sec_id, semester, year HAVING semester='Spring' and year=2010);
+
+11>
+SELECT DISTINCT name FROM teaches, instructor WHERE teaches.id = instructor.id AND course_id IN (SELECT DISTINCT course_id FROM takes,student WHERE dept_name='Comp. Sci.' AND student.id = takes.id);
+
+12>
+SELECT dept_name, AVG(salary) FROM instructor GROUP BY dept_name HAVING AVG(salary)>50000 AND COUNT(ID)>=2;
+
+13>
+WITH temp AS (SELECT max(budget) AS temp FROM department) SELECT * FROM department,temp WHERE temp = department.budget;
+
+14>
+WITH temp AS (SELECT avg(sum(salary)) AS T FROM instructor group by dept_name) SELECT distinct dept_name FROM instructor,temp group by dept_name,T having sum(salary)>T;
+
+15>
+savepoint s1;
+update student set dept_name='Finance' where dept_name='Comp. Sci.';
+rollback s1;
+
+16>
+savepoint s2;
+update instructor set salary = (case when salary>100000 then salary*1.03 else salary*1.05 end);
+rollback s2; 
+
+
