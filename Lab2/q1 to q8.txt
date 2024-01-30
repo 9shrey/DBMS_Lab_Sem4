@@ -1,0 +1,99 @@
+drop table employee;
+drop table department;
+drop table prereq;
+drop table time_slot;
+drop table advisor;
+drop table takes;
+drop table student;
+drop table teaches;
+drop table section;
+drop table instructor;
+drop table course;
+drop table department;
+drop table classroom;
+delete from prereq;
+delete from time_slot;
+delete from advisor;
+delete from takes;
+delete from student;
+delete from teaches;
+delete from section;
+delete from instructor;
+delete from course;
+delete from department;
+delete from classroom;
+
+create table Employee(
+EmpNo numeric(3),
+EmpName varchar(30) not null,
+Gender varchar(1) not null,
+Salary numeric(8,2) not null, 
+Address varchar(30) not null, 
+DNo numeric(3),
+primary key(EmpNo),
+check(Gender in ('M','F'))
+); 
+
+create table department(
+DeptNo numeric(3),
+DeptName varchar(20),
+primary key(DeptNo),
+unique(DeptName)
+);
+
+alter table employee drop column Salary;
+
+alter table employee add constraint sl_default Salary numeric(8,2) default(10000.00) not null;
+
+
+alter table employee add constraint fk_dept foreign key(DNo) references Department(DeptNo);
+
+insert into department values(1,'ECE');
+insert into department values(2,'CCE');
+insert into department values(3,'CSE');
+insert into department values(4,'AIML');
+insert into department values(5,'IT');
+
+select * from department;
+
+insert into employee values(1,'Seee','M', 'Nowhere',5,200.05);
+insert into employee values(2,'Srrr','F', 'everywhere',3,453.35);
+insert into employee values(23,'brtb','M', 'there',3,565.64);
+insert into employee values(454,'bgbvd','F', 'huh',2,587.77);
+insert into employee values(645,'fggt','M', 'Nowhere',4,6346.65);
+
+select * from employee;
+
+insert into employee values(54,'huh','M', 'Nowhere',8,200.05);
+insert into employee values(1,'89','M', 'Nowhere',5,78.05);
+insert into employee values(2,'Srrr','M', 'street',3,98.05);
+
+delete from department where DeptNo=4;
+
+alter table employee drop constraint fk_dept;
+
+alter table Employee add constraint fk_dept foreign key(DNo) references department(DeptNo) on delete cascade;
+
+//alter table employee modify Salary numeric(8,2) default(10000.0);
+
+//alter table employee drop constraint sl_default;
+
+//alter table employee add constraint sl_default Salary numeric(8,2) default(1000.0) not null;
+
+insert into employee values(69,'Shr', 'M','Huhhh', 2,default);
+
+select * from employee;
+
+rename department to departmen1;
+
+@"E:\Sem4\DBS_Lab\Lab2\University.sql"
+
+@"E:\Sem4\DBS_Lab\Lab2\smallRelations.sql"
+
+set linesize = 1000;
+
+select name, dept_name from student;
+
+select name from instructor where dept_name = 'Comp. Sci.';
+
+select title from course where dept_name = 'Comp. Sci.' and credits = 3;
