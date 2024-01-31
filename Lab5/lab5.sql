@@ -1,4 +1,5 @@
 @"C:\Users\ugcse.PG-CP.000\Desktop\Shrey_AIML_A2_45\DBS_Lab\Lab5\company.sql"
+@"E:\Sem4\DBS_Lab\Lab5\company.sql"
 
 -- 1.Retrieve the birth date and address of the employee(s) whose name is ‘John B. Smith’.
 select bdate, address from employee where fname='John' and minit='B' and lname='Smith';
@@ -8,21 +9,14 @@ BDATE     ADDRESS
 09-JAN-65 731 Fondren, Houston, TX
 
 -- 2. Retrieve the name and address of all employees who work for the ‘Research’ department.
-select fname, minit, lname, address from employee natural join department where dname='Research';
+select fname, minit, lname, address from employee join department on employee.dno = department.dnumber where dname='Research';
 
 FNAME           M LNAME           ADDRESS
 --------------- - --------------- ------------------------------
-Richard         K Marini          98 Oak Forest, Katy, TX
 John            B Smith           731 Fondren, Houston, TX
 Franklin        T Wong            638 Voss, Houston, TX
-Alicia          J Zelaya          3321 Castle, Spring, TX
-Jennifer        S Wallace         291 Berry, Bellaire, TX
 Ramesh          K Narayan         975 Fire Oak, Humble, TX
 Joyce           A English         5631 Rice, Houston, TX
-Ahmad           V Jabbar          980 Dallas, Houston, TX
-James           E Borg            450 Stone, Houston, TX
-
-9 rows selected.
 
 -- 3.For every project located in ‘Stafford’, list the project number, the controlling department number, and the
 -- department manager’s last name, address, and birth date.
