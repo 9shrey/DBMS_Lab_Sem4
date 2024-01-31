@@ -1,0 +1,16 @@
+name of project
+
+team member details
+
+abstract - one para desc of project
+(requirements summarized)
+
+features of the project (enumerated point wise)
+
+allow popolution, retrieval and insertion/deletion of data.
+
+concentrate on database part of the project, dont worry about ui. 
+
+Queries will be seen. PLSQL has exception handling... etc. ER Diagram and population of database.
+Use all kind of queries and incorportate PLSQL.
+
