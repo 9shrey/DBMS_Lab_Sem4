@@ -173,6 +173,4 @@ project.pnumber, pname having count(*)>2 order by project.pnumber;
 select dname, count(*) from Department, employee where Department.dnumber = employee.dno and salary >40000 and
 department.dnumber in (select dnumber from employee group by dnumber having count(*) > 5) group by dname;
 
-DNAME             COUNT(*)
---------------- ----------
-Administration           2
+no rows selected.
